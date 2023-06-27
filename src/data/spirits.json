@@ -1,0 +1,84 @@
+{
+    "Whiskies": [
+      "Scotch whisky",
+      "Irish whiskey",
+      "Bourbon whiskey",
+      "Rye whiskey",
+      "Canadian whisky",
+      "Japanese whisky"
+    ],
+    "Rhums": [
+      "Rhum agricole",
+      "Rhum industriel",
+      "Rhum traditionnel",
+      "Rhum épicé",
+      "Rhum blanc",
+      "Rhum ambré",
+      "Rhum vieux",
+      "Rhum premium"
+    ],
+    "Vodkas": [
+      "Vodka traditionnelle",
+      "Vodka aromatisée",
+      "Vodka premium"
+    ],
+    "Gins": [
+      "London dry gin",
+      "Gin Plymouth",
+      "Old Tom gin",
+      "New Western-style gin",
+      "Genever"
+    ],
+    "Tequilas": [
+      "Tequila blanco",
+      "Tequila reposado",
+      "Tequila añejo",
+      "Tequila extra añejo"
+    ],
+    "Brandies": [
+      "Cognac",
+      "Armagnac",
+      "Calvados",
+      "Brandy de Jerez",
+      "Pisco",
+      "Marc"
+    ],
+    "Liqueurs": [
+      "Amaretto",
+      "Baileys Irish Cream",
+      "Crème de cassis",
+      "Chartreuse",
+      "Grand Marnier",
+      "Triple sec",
+      "Limoncello",
+      "Frangelico",
+      "Drambuie",
+      "Chambord",
+      "Sambuca",
+      "Cointreau",
+      "Galliano"
+    ],
+    "Aperitifs et digestifs": [
+      "Vermouth",
+      "Campari",
+      "Aperol",
+      "Fernet-Branca",
+      "Chartreuse",
+      "Pastis",
+      "Bénédictine",
+      "Absinthe",
+      "Jägermeister",
+      "Amaro"
+    ],
+    "Autres spiritueux": [
+      "Mezcal",
+      "Sake",
+      "Soju",
+      "Aguardiente",
+      "Grappa",
+      "Aquavit",
+      "Ouzo",
+      "Rakia"
+    ]
+  }
+  
