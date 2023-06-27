@@ -1,7 +1,11 @@
 const Home = () => {
    return (
       <>
-         <h1>Teste de mon composant Home</h1>
+         <div className="md:container md:mx-auto">
+            <div className="flex justify-center">
+               <h1>test</h1>
+            </div>
+         </div>
       </>
    );
 };
