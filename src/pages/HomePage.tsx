@@ -4,7 +4,7 @@ const Home = () => {
    return (
       <>
          <div className="md:container md:mx-auto">
-            <CocktailList ramdomElementNumber="6" />
+            <CocktailList ramdomElementNumber={7} />
          </div>
       </>
    );

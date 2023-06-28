@@ -3,6 +3,14 @@ import { Card } from 'flowbite-react';
 import axios from 'axios';
 import data from '../../data/cocktails.json';
 
+interface Cocktail {
+   cocktailReceipt: any;
+}
+
+interface CocktailArray {
+   [key: string]: Cocktail;
+}
+
 const getRamdomCocktail = () => {
    const totalCocktails = data.cocktails.length;
    const randomIndex = Math.floor(Math.random() * totalCocktails);
@@ -10,23 +18,25 @@ const getRamdomCocktail = () => {
    return cocktail;
 };
 
-const getCocktailData = (name: string) => {
-   if (name) {
+const getCocktailData = (name: string): Promise<any> => {
+   return new Promise((resolve, reject) => {
       const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + name;
-      axios.get(url).then((response) => {
-         console.log(response);
-      });
-   } else {
-      console.error('An error occured');
-   }
+      axios
+         .get(url)
+         .then((response) => {
+            const dataCocktail = response.data.drinks[0];
+            resolve(dataCocktail);
+         })
+         .catch((error) => {
+            reject(error);
+         });
+   });
 };
 
-const CocktailCard = (props) => {
-   const { name } = props;
-   const dataCocktai = getCocktailData(name);
-
+const CocktailCard = (props: { name: string; item: any }) => {
+   const { name, item } = props;
    return (
-      <Card className="max-w-sm" href="#">
+      <Card className="max-w-sm" href="#" imgSrc={item.strDrinkThumb}>
          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             <p>{name}</p>
          </h5>
@@ -34,23 +44,21 @@ const CocktailCard = (props) => {
    );
 };
 
-const CocktailList = (props) => {
+const CocktailList = (props: { ramdomElementNumber: number }) => {
    const { ramdomElementNumber } = props;
-   const [randomCocktailList, setRandomCocktailList] = useState<string[]>([]);
+   const [randomCocktailList, setRandomCocktailList] = useState<CocktailArray>({});
 
    useEffect(() => {
       const fetchCocktails = async () => {
          try {
-            const arrayCocktail = [];
+            const arrayCocktail: CocktailArray = {};
             if (ramdomElementNumber && ramdomElementNumber > 1) {
                for (let step = 1; step < ramdomElementNumber; step++) {
-                  const cocktail = getRamdomCocktail();
-                  arrayCocktail.push(cocktail);
-                  console.log('Walking east one step');
+                  const cocktail = await getRamdomCocktail();
+                  const dataFromCocktail = await getCocktailData(cocktail);
+                  arrayCocktail[cocktail] = dataFromCocktail;
                }
-               if (arrayCocktail.length > 1) {
-                  setRandomCocktailList(arrayCocktail);
-               }
+               setRandomCocktailList(arrayCocktail);
             }
          } catch (error) {
             console.error('Error fetching cocktails:', error);
@@ -64,9 +72,9 @@ const CocktailList = (props) => {
       <>
          <h1>Cocktails aléatoires :</h1>
          <div className="grid grid-cols-3 gap-4">
-            {randomCocktailList.map((item, index) => (
-               <CocktailCard name={item} />
-            ))}
+            {Object.entries(randomCocktailList).map(([key, item], index) => {
+               return <CocktailCard name={key} item={item} key={index} />;
+            })}
          </div>
       </>
    );
