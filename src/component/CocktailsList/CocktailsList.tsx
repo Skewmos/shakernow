@@ -70,7 +70,9 @@ const CocktailList = (props: { ramdomElementNumber: number }) => {
 
    return (
       <>
-         <h1>Cocktails aléatoires :</h1>
+         <h1 className="text-4xl font-extrabold dark:text-white mt-5 mb-5">
+            Our cocktails of the moment
+         </h1>
          <div className="grid grid-cols-3 gap-4">
             {Object.entries(randomCocktailList).map(([key, item], index) => {
                return <CocktailCard name={key} item={item} key={index} />;
