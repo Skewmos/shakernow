@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card } from 'flowbite-react';
 import axios from 'axios';
 import data from '../../data/cocktails.json';
+import CocktailModal from 'component/CocktailModal/CocktailModal';
 
 interface Cocktail {
    cocktailReceipt: any;
@@ -35,12 +36,23 @@ const getCocktailData = (name: string): Promise<any> => {
 
 const CocktailCard = (props: { name: string; item: any }) => {
    const { name, item } = props;
+   const [openModal, setOpenModal] = useState<string | undefined>();
+   console.log('Item', item);
    return (
-      <Card className="max-w-sm" href="#" imgSrc={item.strDrinkThumb}>
-         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            <p>{name}</p>
-         </h5>
-      </Card>
+      <>
+         <Card className="max-w-sm" imgSrc={item.strDrinkThumb}>
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+               <p>{name}</p>
+            </h5>
+            <a
+               className="text-sm font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+               onClick={() => setOpenModal('default')}
+            >
+               <p>View recipe</p>
+            </a>
+         </Card>
+         <CocktailModal openModalValue={openModal} item={item} />
+      </>
    );
 };
 
